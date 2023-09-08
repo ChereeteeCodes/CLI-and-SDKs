@@ -1,0 +1,5 @@
+aws
+aws configure
+aws s3api create-bucket --bucket cils3cli-charity --region us-east-1
+aws s3api list-buckets
+aws s3api put-bucket-policy --policy file://policy.json
