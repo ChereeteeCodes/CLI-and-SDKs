@@ -1,0 +1,39 @@
+az
+az notepad $PROFILE
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+az --version
+az login
+az find secrets
+az network nsg --help
+az interactive
+az group list
+az list --query
+az group list --query "[].name"
+az group list --query "[].{resourceGroupName:name,location:location}"
+ # create shell variables
+>> resourceGroup=VMTutorialResources
+>> location=eastus
+>>
+>> az group create --name $resourceGroup --location $location
+az group create -n VMTutorialResources -l eastus
+az network vnet create \
+>>   --name TutorialVNet1 \
+>>   --resource-group VMTutorialResources \
+>>   --address-prefixes 10.0.0.0/16 \
+>>   --subnet-name TutorialSubnet1 \
+>>   --subnet-prefixes 10.0.0.0/24
+
+# create shell variables
+>> vmName=TutorialVM1
+>>
+>> az vm create \
+>>   --resource-group $resourceGroup \
+>>   --name $vmName \
+>>   --image UbuntuLTS \
+>>   --vnet-name $vnetName \
+>>   --subnet $subnetName \
+>>   --generate-ssh-keys \
+>>   --output json \
+>>   --verbose
+az vm show --name $vmName --resource-group $resourceGroup
+ az group delete --name $VMTutorialResources --no-wait

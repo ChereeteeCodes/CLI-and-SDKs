@@ -1,0 +1,15 @@
+#!bash
+az login
+az account set --subscription 00000000-0000-0000-0000
+az group create --name myResourceGroup --location centralus
+az vm create --resource-group myResourceGroup --name myVM1 --image win2016datacenter \
+   --admin-username azureuser --admin-password 1StrongPassword$
+az portal dashboard create --resource-group myResourceGroup --name 'Simple VM Dashboard' \
+   --input-path portal-dashboard-template-testvm.json --location centralus
+az portal dashboard show --resource-group myResourceGroup --name 'Simple VM Dashboard'
+az portal dashboard list
+az portal dashboard list --resource-group myResourceGroup
+az portal dashboard update --resource-group myResourceGroup --name 'Simple VM Dashboard' \
+   --input-path portal-dashboard-template-testvm.json --location centralus
+
+
